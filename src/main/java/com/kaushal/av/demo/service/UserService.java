@@ -3,7 +3,7 @@ package com.kaushal.av.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.kaushal.av.demo.model.Users;
@@ -15,7 +15,7 @@ public class UserService {
     @Autowired
     private UserRepo userRepo;
 
-    // private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
     public List<Users> getUsers() {
         return userRepo.findAll();
@@ -26,7 +26,7 @@ public class UserService {
     }
     
     public Users createUser(Users user) {
-        // user.setPassword(encoder.encode(user.getPassword()));
+        user.setPassword(encoder.encode(user.getPassword()));
         userRepo.save(user);
         return user;
     }
